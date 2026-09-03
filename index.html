@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Szymon Wac — AI Creative Portfolio. Generative video, interactive storytelling and music." />
+  <title>Szymon Wac — AI Creative Portfolio</title>
+  <style>
+    :root{
+      --bg:#090a0c;
+      --panel:#111318;
+      --panel2:#171a20;
+      --text:#f5f2ec;
+      --muted:#a9adb6;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff9b54;
+      --accent2:#ffd2a6;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%}
+    .wrap{max-width:var(--max);margin:auto;padding:0 24px}
+    nav{position:sticky;top:0;z-index:20;background:rgba(9,10,12,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:800;letter-spacing:.04em}.brand span{color:var(--muted);font-weight:500}
+    .navlinks{display:flex;gap:22px;color:var(--muted);font-size:.92rem}
+    .navlinks a:hover{color:var(--text)}
+    .hero{min-height:83vh;display:grid;align-items:end;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,8,10,.95) 0%,rgba(7,8,10,.62) 45%,rgba(7,8,10,.2) 72%,rgba(7,8,10,.72) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 45%),url('assets/hg_duel.jpg') center 36% / cover no-repeat;filter:saturate(.9)}
+    .hero-content{position:relative;z-index:2;padding:120px 0 74px;max-width:760px}
+    .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);font-weight:800;margin-bottom:16px}
+    h1{font-size:clamp(3.1rem,8vw,7.2rem);line-height:.9;margin:0 0 26px;letter-spacing:-.055em}
+    .hero p{font-size:clamp(1.12rem,2vw,1.45rem);max-width:650px;color:#d4d5da;margin:0 0 34px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 17px;border-radius:999px;border:1px solid var(--line);font-weight:750;font-size:.92rem;background:rgba(255,255,255,.055);transition:.18s ease}
+    .btn.primary{background:var(--text);color:#0a0b0d;border-color:var(--text)}
+    .btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.28)}
+    section{padding:96px 0;border-bottom:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:end;margin-bottom:38px}
+    h2{font-size:clamp(2.35rem,5vw,4.4rem);line-height:.98;letter-spacing:-.045em;margin:0}
+    .lede{color:var(--muted);font-size:1.07rem;margin:0;max-width:570px}
+    .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+    .pill{border:1px solid var(--line);padding:7px 11px;border-radius:999px;color:#d5d7dd;font-size:.8rem;background:rgba(255,255,255,.035)}
+    .award{color:#ffd4a9;border-color:rgba(255,155,84,.32);background:rgba(255,155,84,.08)}
+    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .shot{overflow:hidden;border-radius:18px;background:#13151a;border:1px solid var(--line);position:relative}
+    .shot img{height:100%;object-fit:cover;transition:transform .35s ease}
+    .shot:hover img{transform:scale(1.018)}
+    .hero-shot{grid-column:span 7;aspect-ratio:16/9}.side-shot{grid-column:span 5;aspect-ratio:16/9}.half-shot{grid-column:span 6;aspect-ratio:16/9}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:28px 0 0}
+    .step{padding:20px;border-radius:15px;background:var(--panel);border:1px solid var(--line)}
+    .step b{display:block;margin-bottom:6px}.step span{color:var(--muted);font-size:.9rem}
+    .callout{margin-top:24px;padding:18px 20px;border-left:3px solid var(--accent);background:linear-gradient(90deg,rgba(255,155,84,.09),rgba(255,155,84,.015));color:#d6d7dc;border-radius:0 14px 14px 0}
+    .project-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+    .nawia-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.nawia-grid .shot{aspect-ratio:16/9}
+    .music-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+    .covers{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cover{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+    .music-copy h3{font-size:2rem;margin:0 0 14px}.music-copy p{color:var(--muted);font-size:1.04rem}
+    .video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.video-grid .shot{aspect-ratio:16/9}
+    .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}.toolgroup{padding:24px;border:1px solid var(--line);background:var(--panel);border-radius:16px}.toolgroup h3{margin:0 0 10px;font-size:1.05rem}.toolgroup p{margin:0;color:var(--muted);font-size:.94rem}
+    footer{padding:70px 0 90px}.footer-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}.footer-grid h2{font-size:clamp(2.3rem,5vw,4.6rem)}.small{color:var(--muted);font-size:.88rem}
+    @media(max-width:800px){
+      .navlinks{display:none}.hero{min-height:74vh}.section-head,.music-layout,.footer-grid{grid-template-columns:1fr}.hero-shot,.side-shot,.half-shot{grid-column:span 12}.process{grid-template-columns:1fr 1fr}.nawia-grid,.video-grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.covers{max-width:520px}.section-head{gap:18px}section{padding:72px 0}
+    }
+    @media(max-width:500px){.process{grid-template-columns:1fr}.wrap{padding:0 17px}.hero-content{padding-bottom:50px}.covers{gap:8px}.shot{border-radius:12px}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top">SZYMON WAC <span>/ AI CREATIVE</span></a>
+      <div class="navlinks">
+        <a href="#hellish">Hellish Gate</a><a href="#nawia">Nawia</a><a href="#music">Music</a><a href="#video">Video</a><a href="#tools">Tools</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero">
+    <div class="wrap hero-content">
+      <div class="eyebrow">AI Creative Portfolio · 2026</div>
+      <h1>Szymon<br>Wac</h1>
+      <p>Generative storytelling across film, interactive experiences and music — from first concept and prompting to iteration, editing and a finished piece.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#hellish">View selected work ↓</a>
+        <a class="btn" href="https://www.youtube.com/watch?v=XSr6YT7XFpY" target="_blank" rel="noopener">Watch Hellish Gate ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hellish">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">01 · Generative film</div>
+            <h2>Hellish Gate</h2>
+            <div class="meta">
+              <span class="pill award">2nd Place — Digital Ars 2025 · Open Category</span>
+              <span class="pill">3:44 short film</span><span class="pill">20+ hours</span><span class="pill">1,173 generated scene candidates</span>
+            </div>
+          </div>
+          <p class="lede">The project began with a song I created in Suno. While listening to the lyrics, I imagined a dark western story and started translating that vision into prompts, scenes and a complete visual narrative.</p>
+        </div>
+
+        <div class="gallery">
+          <figure class="shot hero-shot"><img src="assets/hg_duel.jpg" alt="Hellish Gate duel scene"></figure>
+          <figure class="shot side-shot"><img src="assets/hg_close.jpg" alt="Hellish Gate close-up"></figure>
+          <figure class="shot half-shot"><img src="assets/hg_house.jpg" alt="Burning house scene from Hellish Gate"></figure>
+          <figure class="shot half-shot"><img src="assets/hg_explosion.jpg" alt="Explosion scene from Hellish Gate"></figure>
+        </div>
+
+        <div class="process">
+          <div class="step"><b>Music & idea</b><span>Original Suno track became the starting point for the film's story and tone.</span></div>
+          <div class="step"><b>Story & storyboard</b><span>ChatGPT was used to develop the concept, storyboard and individual scene prompts.</span></div>
+          <div class="step"><b>Generation & iteration</b><span>VEED's ChatGPT integration supported the generation workflow. I created 1,173 scene candidates.</span></div>
+          <div class="step"><b>Edit & direction</b><span>I selected and assembled the final shots — and scrapped one full version when the narrative did not match the result I wanted.</span></div>
+        </div>
+
+        <div class="callout"><strong>Result:</strong> I submitted the finished film to Digital Ars 2025 and received 2nd place in the Open category. The awards were presented at AI Creative Fest 2025 in Warsaw, where I attended Kamil Soldacki's talk — my first introduction to ElevenLabs.</div>
+        <div class="project-actions"><a class="btn primary" href="https://www.youtube.com/watch?v=XSr6YT7XFpY" target="_blank" rel="noopener">Watch the film on YouTube ↗</a></div>
+      </div>
+    </section>
+
+    <section id="nawia">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">02 · Interactive storytelling</div><h2>Nawia</h2>
+            <div class="meta"><span class="pill">Narrative game prototype</span><span class="pill">Slavic mythology</span><span class="pill">Playable prototype in Polish</span></div>
+          </div>
+          <p class="lede">An AI-assisted narrative adventure inspired by Slavic mythology. I developed the concept, worldbuilding, story, dialogue, visual direction and interactive prototype, combining cinematic stills with exploration, choices and game systems.</p>
+        </div>
+        <div class="nawia-grid">
+          <figure class="shot"><img src="assets/nawia_wedding.jpg" alt="Nawia wedding dialogue scene"></figure>
+          <figure class="shot"><img src="assets/nawia_eye.jpg" alt="Nawia Third Eye game mechanic"></figure>
+          <figure class="shot"><img src="assets/nawia_ritual.jpg" alt="Nawia healing ritual mechanic"></figure>
+          <figure class="shot"><img src="assets/nawia_raven.jpg" alt="Nawia Raven Chamber exploration scene"></figure>
+        </div>
+        <div class="process">
+          <div class="step"><b>Narrative design</b><span>Branching dialogue, quests, characters and a larger story built around mystery and Slavic folklore.</span></div>
+          <div class="step"><b>Visual direction</b><span>A consistent semi-realistic illustrated style designed around full-screen cinematic scenes.</span></div>
+          <div class="step"><b>Gameplay systems</b><span>Exploration, journal updates, interactive rituals, supernatural abilities and story choices.</span></div>
+          <div class="step"><b>Prototyping</b><span>AI-assisted development, testing and iteration to turn the concept into a working interactive experience.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">03 · Generative audio</div><h2>Prometeusz</h2></div>
+          <p class="lede">An independent music project combining original concepts and lyrics with generative music workflows. Two albums are currently released on Spotify.</p>
+        </div>
+        <div class="music-layout">
+          <div class="covers">
+            <div class="cover"><img src="assets/album_west.jpg" alt="Coming from west album artwork"></div>
+            <div class="cover"><img src="assets/album_road.jpg" alt="Moja Droga album artwork"></div>
+          </div>
+          <div class="music-copy">
+            <h3>Music, concept and visual identity</h3>
+            <p>I use Suno to explore and iterate on songs, then develop visual identities for individual releases. For artwork, I have used Adobe Firefly's generative editing tools to add or modify specific details so the image fits the story and mood of a track.</p>
+            <div class="meta"><span class="pill">Suno</span><span class="pill">Adobe Firefly</span><span class="pill">Original lyrics & concepts</span><span class="pill">2 released albums</span></div>
+            <div class="project-actions"><a class="btn primary" href="https://open.spotify.com/artist/1Shd8cAudCAn4m4v5t5a26" target="_blank" rel="noopener">Listen on Spotify ↗</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">04 · AI music video</div><h2>Visual storytelling</h2></div>
+          <p class="lede">A second music-video experiment focused on symbolic, surreal imagery and visual narrative. I developed the concept, generated the scenes and assembled them into a finished edit.</p>
+        </div>
+        <div class="video-grid">
+          <figure class="shot"><img src="assets/mv_social.jpg" alt="AI music video social media wall scene"></figure>
+          <figure class="shot"><img src="assets/mv_mannequins.jpg" alt="AI music video mannequin scene"></figure>
+          <figure class="shot"><img src="assets/mv_ring.jpg" alt="AI music video ring scene"></figure>
+          <figure class="shot"><img src="assets/mv_city.jpg" alt="AI music video city scene"></figure>
+        </div>
+        <div class="project-actions"><a class="btn primary" href="https://www.youtube.com/watch?v=TPIspHmT41g" target="_blank" rel="noopener">Watch the music video ↗</a></div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">05 · Workflow</div><h2>Tools I use</h2></div>
+          <p class="lede">I am most comfortable working across tools rather than treating any single model as the solution. I use AI to explore possibilities, then make creative decisions through selection, iteration, editing and testing.</p>
+        </div>
+        <div class="tools">
+          <div class="toolgroup"><h3>Generative & creative</h3><p>ChatGPT · Suno · Adobe Firefly</p></div>
+          <div class="toolgroup"><h3>Video & visual editing</h3><p>VEED · OpenShot · Adobe tools · Generative Fill</p></div>
+          <div class="toolgroup"><h3>Creative process</h3><p>Concept development · Storyboarding · Prompt iteration · Visual direction · Editing · AI-assisted prototyping & testing</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2>Ideas are the start.<br>Iteration makes them real.</h2>
+      </div>
+      <div>
+        <p class="small">Szymon Wac · AI Creative Portfolio · 2026<br>Generative video · Storytelling · Music · Interactive experiences</p>
+        <div class="project-actions">
+          <a class="btn" href="https://www.youtube.com/watch?v=XSr6YT7XFpY" target="_blank" rel="noopener">YouTube ↗</a>
+          <a class="btn" href="https://open.spotify.com/artist/1Shd8cAudCAn4m4v5t5a26" target="_blank" rel="noopener">Spotify ↗</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
